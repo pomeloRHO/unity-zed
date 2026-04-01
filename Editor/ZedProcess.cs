@@ -29,11 +29,11 @@ namespace UnityZed
             if (!string.IsNullOrEmpty(filePath))
             {
 #if UNITY_EDITOR_WIN
-                args.Append(" \a ");
+                args.Append(" /a ");
 #else
                 args.Append(" -a ");
 #endif
-                args.Append($"\"{filePath}\"");
+                args.Append($"\"{filePath}");
 
                 if (line >= 0)
                 {
@@ -46,6 +46,7 @@ namespace UnityZed
                         args.Append(column);
                     }
                 }
+                args.Append("\"");
             }
 
             return CodeEditor.OSOpenFile(m_ExecPath.ToString(SlashMode.Native), args.ToString());
